@@ -1,0 +1,22 @@
+GridLayout {
+    border-color: greenyellow;
+    border-width: 5px;
+
+
+}
+
+/*Label {
+    width: 150px;
+    height:150px;
+}*/
+
+#i1 {
+    background: red;
+}
+#i2 {
+    background: blue;
+}
+#i3 {
+    background: orange;
+}
+
