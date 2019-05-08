@@ -1,5 +1,9 @@
-import {Component, Input} from "@angular/core";
-import {ItemEventData} from "tns-core-modules/ui/list-view";
+import {Component} from "@angular/core";
+import {isAndroid} from  'tns-core-modules/platform';
+import { RouterExtensions } from "nativescript-angular/router";
+import {Page} from 'tns-core-modules/ui/page/page';
+
+declare var android: any;
 
  @Component({
      selector: 'ns-current-challenge',
@@ -8,8 +12,23 @@ import {ItemEventData} from "tns-core-modules/ui/list-view";
      moduleId: module.id
  })
 export class CurrentChallengeComponent {
-     // challengeDescription = '';
-     @Input() challengeTitle = '';
+    constructor (private router: RouterExtensions, private page: Page){}
+
+    onEdit(){
+        this.router.navigate(['/edit-challenge']);
+    }
+
+    onLoadActionBar(){
+        if (isAndroid){
+          const androidToolbar =  this.page.actionBar.nativeView;
+          const backButton = androidToolbar.getNavigationIcon();
+          if (backButton){
+              backButton.setColorFilter(android.graphics.Color.parseColor('#171717'),
+              (<any>android.graphics).PorterDuff.Mode.SRC_ATOP);
+          }
+        }
+
+    }
 
  }
 
